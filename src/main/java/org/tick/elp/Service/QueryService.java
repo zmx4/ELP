@@ -32,7 +32,7 @@ public class QueryService implements IWordQueryService {
     public List<String> queryWordByTranslation(String translation) {
         try {
             Dao<Word, String> wordDao = dataBaseService.getWordDao();
-            List<Word> results = wordDao.queryForEq("translation", translation);
+            List<Word> results = wordDao.queryBuilder().where().like("translation", "%" + translation + "%").query();
             return results.stream().map(Word::getWord).toList();
         } catch (SQLException e) {
             e.printStackTrace();

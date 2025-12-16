@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 import org.tick.elp.Entity.Word;
 
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class DataBaseService implements IDataBaseService {
             String databaseUrl = "jdbc:sqlite:stardict.db";
             connectionSource = new JdbcConnectionSource(databaseUrl);
             wordDao = DaoManager.createDao(connectionSource, Word.class);
+            TableUtils.createTableIfNotExists(connectionSource, Word.class);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Could not initialize database connection", e);
