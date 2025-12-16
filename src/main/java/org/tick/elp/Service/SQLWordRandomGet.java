@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.j256.ormlite.dao.GenericRawResults;
 
 public class SQLWordRandomGet implements IWordRandomGet {
-    private static DataBaseService dataBaseService = DataBaseService.getInstance();
+    private static final DataBaseService dataBaseService = DataBaseService.getInstance();
 
     @Override
     public Map<String,String> getRandomWordArray(int number, String table) {
@@ -23,7 +23,7 @@ public class SQLWordRandomGet implements IWordRandomGet {
                         FROM random_ids
                         LIMIT {}
                         )
-                        SELECT t.* 
+                        SELECT t.*
                         FROM my_table t
                         INNER JOIN random_ids r ON t.rowid >= r.id -- 使用 >= 解决 ID 空洞问题
                         GROUP BY t.rowid -- 去重，防止正好撞上同一个 ID

@@ -8,13 +8,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.RadioButton?>
+
+<?import javafx.scene.control.ToggleGroup?>
 <VBox alignment="TOP_LEFT" spacing="12.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.tick.elp.HelloController">
+      fx:controller="org.tick.elp.Controller.HelloController">
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
     </padding>
 
-    <Label text="词典" />
+    <!-- <Label text="搜翻译" /> -->
+    
+    <HBox spacing="12.0">
+        <RadioButton fx:id="queryTranslation" text="搜翻译" selected="true">
+            <toggleGroup>
+                <ToggleGroup fx:id="searchTypeGroup"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="queryWord" text="搜单词" toggleGroup="$searchTypeGroup"/>
+    </HBox>
 
     <HBox spacing="8.0">
         <TextField fx:id="wordField" promptText="输入英文单词，例如 hello" HBox.hgrow="ALWAYS" />
