@@ -4,8 +4,6 @@ package org.tick.elp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.tick.elp.Entity.Word;
-import org.tick.elp.Service.DataBaseService;
 import org.tick.elp.Service.QueryService;
 
 import java.sql.SQLException;
