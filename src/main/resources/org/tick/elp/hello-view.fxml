@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<VBox alignment="TOP_LEFT" spacing="12.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.tick.elp.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label text="词典" />
+
+    <HBox spacing="8.0">
+        <TextField fx:id="wordField" promptText="输入英文单词，例如 hello" HBox.hgrow="ALWAYS" />
+        <Button text="查询" onAction="#onQueryButtonClick" />
+        <Button text="随机" onAction="#onRandomButtonClick" />
+    </HBox>
+
+    <Label text="翻译" />
+    <TextArea fx:id="translationArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS" />
+
+    <Label fx:id="statusLabel" text="" />
 </VBox>
