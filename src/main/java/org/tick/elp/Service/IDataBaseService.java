@@ -6,4 +6,5 @@ import org.tick.elp.Entity.Word;
 public interface IDataBaseService {
     void initializeConnect();
     Dao<Word, String> getWordDao();
+    
 }
