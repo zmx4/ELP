@@ -16,9 +16,6 @@ public class QueryServiceTest {
 
     @Test
     public void testQueryTranslation() throws SQLException {
-        // Ensure data exists
-        DataBaseService.getInstance().getWordDao().createOrUpdate(new Word("hello", "你好"));
-
         queryService = new QueryService();
         String translation = queryService.queryTranslation("hello");
         System.out.println("Translation of 'hello': " + translation);
@@ -27,9 +24,6 @@ public class QueryServiceTest {
 
     @Test
     public void testQueryWordByTranslation() throws SQLException {
-        // Ensure data exists
-        DataBaseService.getInstance().getWordDao().createOrUpdate(new Word("world", "世界"));
-
         queryService = new QueryService();
         var words = queryService.queryWordByTranslation("世界");
         System.out.println("Words with translation '世界': " + words);

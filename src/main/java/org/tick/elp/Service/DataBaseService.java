@@ -28,7 +28,7 @@ public class DataBaseService implements IDataBaseService {
     @Override
     public void initializeConnect() {
         try {
-            String databaseUrl = "jdbc:sqlite:stardict.db";
+            String databaseUrl = "jdbc:sqlite:src\\main\\resources\\org\\tick\\elp\\stardict.db";
             connectionSource = new JdbcConnectionSource(databaseUrl);
             wordDao = DaoManager.createDao(connectionSource, Word.class);
             TableUtils.createTableIfNotExists(connectionSource, Word.class);
