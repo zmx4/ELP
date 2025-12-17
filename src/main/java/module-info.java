@@ -9,6 +9,7 @@ module org.tick.elp {
 
     opens org.tick.elp to javafx.fxml;
     opens org.tick.elp.Entity to ormlite.jdbc;
+    opens org.tick.elp.Service to ormlite.jdbc;
     exports org.tick.elp;
     exports org.tick.elp.Controller;
     opens org.tick.elp.Controller to javafx.fxml;

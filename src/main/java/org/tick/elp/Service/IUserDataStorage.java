@@ -7,4 +7,6 @@ public interface IUserDataStorage {
     void initializeUserDataBase();
     // 插入用户错误答案数据
     boolean insertUserTestData(List<String> falseAnswers);
+    // 删除数据(仅用于测试)
+    boolean clearUserTestData();
 }

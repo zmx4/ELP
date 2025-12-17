@@ -98,4 +98,27 @@ public class UserDataStorage implements IUserDataStorage {
             this.mistakeDate = mistakeDate;
         }
     }
+
+    @Override
+    public boolean clearUserTestData() {
+        if (connectionSource == null) {
+            initializeUserDataBase();
+        }
+        try {
+            // TableUtils.clearTable(connectionSource, UserMistake.class);
+            //断开连接 删除数据库文件
+            connectionSource.close();
+            java.io.File dbFile = new java.io.File(USER_DATA_BASE_NAME);
+            if (dbFile.exists()) {
+                dbFile.delete();
+            }
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
