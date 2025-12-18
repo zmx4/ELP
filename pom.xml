@@ -78,6 +78,11 @@
             <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>9.0.10</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,7 +105,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.tick.elp/org.tick.elp.HelloApplication</mainClass>
+                            <mainClass>org.tick.elp/org.tick.elp.View.DictionaryApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

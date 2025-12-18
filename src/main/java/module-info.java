@@ -6,6 +6,7 @@ module org.tick.elp {
     requires org.kordamp.bootstrapfx.core;
     requires ormlite.jdbc;
     requires java.sql;
+    requires com.jfoenix;
 
     opens org.tick.elp to javafx.fxml;
     opens org.tick.elp.Entity to ormlite.jdbc;
@@ -13,4 +14,6 @@ module org.tick.elp {
     exports org.tick.elp;
     exports org.tick.elp.Controller;
     opens org.tick.elp.Controller to javafx.fxml;
+    exports org.tick.elp.View;
+    opens org.tick.elp.View to javafx.fxml;
 }

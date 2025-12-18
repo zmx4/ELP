@@ -13,7 +13,7 @@ import org.tick.elp.Service.SQLWordRandomGet;
 
 import java.util.Map;
 
-public class HelloController {
+public class DictionaryController {
     @FXML
     private TextField wordField;
 
@@ -35,7 +35,7 @@ public class HelloController {
     private final IWordQueryService queryService;
     private final IWordRandomGet randomGet;
 
-    public HelloController() {
+    public DictionaryController() {
         this.queryService = new QueryService();
         this.randomGet = new SQLWordRandomGet();
     }
