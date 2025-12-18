@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_LEFT" spacing="12.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.tick.elp.Controller.CollectionController">
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+    </padding>
+
+    <Label text="我的收藏" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <HBox spacing="8.0">
+        <Button text="刷新" onAction="#onRefreshButtonClick" />
+        <Button text="删除选中" onAction="#onDeleteButtonClick" />
+    </HBox>
+
+    <ListView fx:id="collectionListView" VBox.vgrow="ALWAYS" />
+
+</VBox>

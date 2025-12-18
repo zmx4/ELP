@@ -10,6 +10,7 @@
 
 <?import javafx.scene.control.RadioButton?>
 
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <VBox alignment="TOP_LEFT" spacing="12.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.tick.elp.Controller.DictionaryController">
@@ -32,6 +33,7 @@
         <TextField fx:id="wordField" promptText="输入英文单词，例如 hello" HBox.hgrow="ALWAYS" />
         <Button text="查询" onAction="#onQueryButtonClick" />
         <Button text="随机" onAction="#onRandomButtonClick" />
+        <ToggleButton fx:id="collectionButton" text="收藏" onAction="#onCollectionButtonClick" />
     </HBox>
 
     <Label text="翻译" />
