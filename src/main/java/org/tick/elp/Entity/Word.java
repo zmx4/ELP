@@ -9,6 +9,66 @@ public class Word {
     private String word;
     @DatabaseField(columnName = "translation")
     private String translation;
+    @DatabaseField(columnName = "cet4")
+    private int cet4;
+    @DatabaseField(columnName = "cet6")
+    private int cet6;
+    @DatabaseField(columnName = "tf")
+    private int tf;
+    @DatabaseField(columnName = "ys")
+    private int ys;
+    @DatabaseField(columnName = "hs")
+    private int hs;
+    @DatabaseField(columnName = "ps")
+    private int ps;
+
+    public int getCet4() {
+        return cet4;
+    }
+
+    public void setCet4(int cet4) {
+        this.cet4 = cet4;
+    }
+
+    public int getCet6() {
+        return cet6;
+    }
+
+    public void setCet6(int cet6) {
+        this.cet6 = cet6;
+    }
+
+    public int getTf() {
+        return tf;
+    }
+
+    public void setTf(int tf) {
+        this.tf = tf;
+    }
+
+    public int getYs() {
+        return ys;
+    }
+
+    public void setYs(int ys) {
+        this.ys = ys;
+    }
+
+    public int getHs() {
+        return hs;
+    }
+
+    public void setHs(int hs) {
+        this.hs = hs;
+    }
+
+    public int getPs() {
+        return ps;
+    }
+
+    public void setPs(int ps) {
+        this.ps = ps;
+    }
 
     public Word() {
     }
