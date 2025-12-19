@@ -38,8 +38,8 @@ public class DetailController {
             addTagIfPresent("CET6", word.getCet6());
             addTagIfPresent("TOEFL", word.getTf());
             addTagIfPresent("IELTS", word.getYs());
-            addTagIfPresent("HighSchool", word.getHs());
-            addTagIfPresent("PrimarySchool", word.getPs());
+            addTagIfPresent("高考", word.getHs());
+            addTagIfPresent("中考", word.getPs());
         } else {
             wordLabel.setText(wordStr);
             translationArea.setText("未找到详细信息");

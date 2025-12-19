@@ -22,6 +22,7 @@
         </font>
     </Label>
 
+    <Label text="考点归属：" />
     <HBox spacing="10.0" fx:id="tagsBox">
         <!-- Tags will be added here dynamically -->
     </HBox>
