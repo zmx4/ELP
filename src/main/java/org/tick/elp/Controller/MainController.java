@@ -11,22 +11,38 @@ import java.util.logging.Logger;
 
 public class MainController {
 
+    public static MainController instance;
+
     @FXML
     private StackPane contentArea;
 
     @FXML
     public void initialize() {
+        instance = this;
         showDictionary();
     }
 
     @FXML
-    private void showDictionary() {
+    public void showDictionary() {
         loadView("/org/tick/elp/hello-view.fxml");
     }
 
     @FXML
-    private void showCollection() {
+    public void showCollection() {
         loadView("/org/tick/elp/collection-view.fxml");
+    }
+
+    public void showDetail(String word, String fromView) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tick/elp/detail-view.fxml"));
+            Parent view = loader.load();
+            DetailController controller = loader.getController();
+            controller.initData(word, fromView);
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(view);
+        } catch (IOException e) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     private void loadView(String fxmlPath) {

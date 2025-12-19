@@ -39,5 +39,16 @@ public class QueryService implements IWordQueryService {
             return null;
         }
     }
+
+    @Override
+    public Word queryWord(String word) {
+        try {
+            Dao<Word, String> wordDao = dataBaseService.getWordDao();
+            return wordDao.queryForId(word);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     
 }

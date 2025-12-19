@@ -10,17 +10,17 @@ public class Word {
     @DatabaseField(columnName = "translation")
     private String translation;
     @DatabaseField(columnName = "cet4")
-    private int cet4;
+    private int cet4; // 四级
     @DatabaseField(columnName = "cet6")
-    private int cet6;
+    private int cet6; // 六级
     @DatabaseField(columnName = "tf")
-    private int tf;
+    private int tf; // 托福
     @DatabaseField(columnName = "ys")
-    private int ys;
+    private int ys;// 雅思
     @DatabaseField(columnName = "hs")
-    private int hs;
-    @DatabaseField(columnName = "ps")
-    private int ps;
+    private int hs; // 高考
+    @DatabaseField(columnName = "ph")
+    private int ps; //中考
 
     public int getCet4() {
         return cet4;

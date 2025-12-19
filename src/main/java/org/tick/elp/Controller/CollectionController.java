@@ -27,6 +27,14 @@ public class CollectionController {
     public void initialize() {
         collectionListView.setItems(collectionList);
         collectionListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        collectionListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                String selected = collectionListView.getSelectionModel().getSelectedItem();
+                if (selected != null) {
+                    MainController.instance.showDetail(selected, "collection");
+                }
+            }
+        });
         loadCollections();
     }
 

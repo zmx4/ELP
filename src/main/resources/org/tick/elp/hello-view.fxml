@@ -34,10 +34,12 @@
         <Button text="查询" onAction="#onQueryButtonClick" />
         <Button text="随机" onAction="#onRandomButtonClick" />
         <ToggleButton fx:id="collectionButton" text="收藏" onAction="#onCollectionButtonClick" />
+        <Button fx:id="detailButton" text="查看详情" onAction="#onDetailButtonClick" disable="true" />
     </HBox>
 
     <Label text="翻译" />
     <TextArea fx:id="translationArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS" />
+    <javafx.scene.control.ListView fx:id="resultListView" VBox.vgrow="ALWAYS" visible="false" managed="false" />
 
     <Label fx:id="statusLabel" text="" />
 </VBox>

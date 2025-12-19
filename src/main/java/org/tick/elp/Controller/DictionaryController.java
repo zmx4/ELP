@@ -1,7 +1,9 @@
 package org.tick.elp.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -33,10 +35,16 @@ public class DictionaryController {
     private TextArea translationArea;
 
     @FXML
+    private ListView<String> resultListView;
+
+    @FXML
     private Label statusLabel;
 
     @FXML
     private ToggleButton collectionButton;
+
+    @FXML
+    private Button detailButton;
 
     private final IWordQueryService queryService;
     private final IWordRandomGet randomGet;
@@ -64,6 +72,15 @@ public class DictionaryController {
         if (queryWord.isSelected()) {
             collectionButton.setDisable(true);
         }
+
+        resultListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                String selected = resultListView.getSelectionModel().getSelectedItem();
+                if (selected != null) {
+                    MainController.instance.showDetail(selected, "dictionary");
+                }
+            }
+        });
     }
 
     @FXML
@@ -80,21 +97,48 @@ public class DictionaryController {
                 translationArea.setText("");
                 setStatus("未找到该单词");
                 collectionButton.setSelected(false);
+                detailButton.setDisable(true);
                 return;
             }
+            showTranslationArea();
             translationArea.setText(normalizeTranslationForDisplay(translation));
             setStatus("查询成功");
             updateCollectionStatus(input.trim());
+            detailButton.setDisable(false);
         } else if (queryWord.isSelected()) {
             java.util.List<String> words = queryService.queryWordByTranslation(input.trim());
             if (words == null || words.isEmpty()) {
-                translationArea.setText("");
+                translationArea.setText(""); // Clear just in case, though hidden
                 setStatus("未找到对应单词");
                 return;
             }
-            translationArea.setText(String.join("\n", words));
+            showResultList();
+            resultListView.getItems().setAll(words);
             setStatus("查询成功");
+            detailButton.setDisable(true);
         }
+    }
+
+    @FXML
+    protected void onDetailButtonClick() {
+        String word = wordField.getText();
+        if (word != null && !word.isBlank()) {
+            MainController.instance.showDetail(word.trim(), "dictionary");
+        }
+    }
+
+    private void showTranslationArea() {
+        translationArea.setVisible(true);
+        translationArea.setManaged(true);
+        resultListView.setVisible(false);
+        resultListView.setManaged(false);
+    }
+
+    private void showResultList() {
+        translationArea.setVisible(false);
+        translationArea.setManaged(false);
+        resultListView.setVisible(true);
+        resultListView.setManaged(true);
     }
 
     @FXML
@@ -108,20 +152,16 @@ public class DictionaryController {
         Map.Entry<String, String> entry = result.entrySet().iterator().next();
         String word = entry.getKey();
         wordField.setText(word);
+        
+        showTranslationArea();
         translationArea.setText(normalizeTranslationForDisplay(entry.getValue()));
         setStatus("已随机获取一个单词");
         
-        // 随机取词后，确保切换到“搜翻译”模式或者至少让收藏按钮可用
-        // 这里简单处理：如果当前是搜单词模式，可能需要切换UI状态，或者仅仅启用收藏按钮
-        // 为了一致性，随机取词通常是取英文单词，所以我们可以认为它是英文
         if (queryWord.isSelected()) {
-             // 如果在搜单词模式下随机取词，wordField被填入了英文，这时候应该允许收藏
-             // 但为了避免混淆，最好切换回搜翻译模式，或者临时允许
-             // 简单起见，我们只更新状态，用户如果想收藏，可能需要手动切换模式或者我们在这里允许
-             // 让我们保持简单：随机取词总是填充英文单词，所以我们检查该单词是否收藏
              collectionButton.setDisable(false); 
         }
         updateCollectionStatus(word);
+        detailButton.setDisable(false);
     }
 
     @FXML
