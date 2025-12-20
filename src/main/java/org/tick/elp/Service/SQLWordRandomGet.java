@@ -11,6 +11,15 @@ public class SQLWordRandomGet implements IWordRandomGet {
 
     @Override
     public Map<String,String> getRandomWordArray(int number, String table) {
+        /* 
+        table:
+        CET4
+        CET6
+        HighSchool
+        PrimarySchool
+        tf
+        ys
+        */
         try {
             GenericRawResults<String[]> rawResults = dataBaseService.getWordDao().queryRaw(
                     """

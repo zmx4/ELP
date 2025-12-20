@@ -32,6 +32,11 @@ public class MainController {
         loadView("/org/tick/elp/collection-view.fxml");
     }
 
+    @FXML
+    public void showTest() {
+        loadView("/org/tick/elp/test-view.fxml");
+    }
+
     public void showDetail(String word, String fromView) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tick/elp/detail-view.fxml"));
