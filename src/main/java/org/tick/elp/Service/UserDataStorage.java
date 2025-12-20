@@ -209,9 +209,6 @@ public class UserDataStorage implements IUserDataStorage {
                 dbFile.delete();
             }
             return true;
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, null, e);
-            return false;
         } catch (Exception e) {
             logger.log(Level.SEVERE, null, e);
             return false;
