@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+src/main/resources/org/tick/elp/stardict.db
+.idea/*
