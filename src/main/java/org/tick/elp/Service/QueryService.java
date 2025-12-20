@@ -5,9 +5,12 @@ import org.tick.elp.Entity.Word;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QueryService implements IWordQueryService {
     
+    private static final Logger logger = Logger.getLogger(QueryService.class.getName());
     private IDataBaseService dataBaseService;
 
     public QueryService() {
@@ -23,7 +26,7 @@ public class QueryService implements IWordQueryService {
                 return result.getTranslation();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
         }
         return null;
     }
@@ -35,7 +38,7 @@ public class QueryService implements IWordQueryService {
             List<Word> results = wordDao.queryBuilder().where().like("translation", "%" + translation + "%").query();
             return results.stream().map(Word::getWord).toList();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -46,7 +49,7 @@ public class QueryService implements IWordQueryService {
             Dao<Word, String> wordDao = dataBaseService.getWordDao();
             return wordDao.queryForId(word);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
         }
         return null;
     }

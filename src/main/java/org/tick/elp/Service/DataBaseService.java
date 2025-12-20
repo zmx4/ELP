@@ -8,9 +8,12 @@ import com.j256.ormlite.table.TableUtils;
 import org.tick.elp.Entity.Word;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataBaseService implements IDataBaseService {
     
+    private static final Logger logger = Logger.getLogger(DataBaseService.class.getName());
     private static DataBaseService instance = null;
     private ConnectionSource connectionSource;
     private Dao<Word, String> wordDao;
@@ -33,7 +36,7 @@ public class DataBaseService implements IDataBaseService {
             wordDao = DaoManager.createDao(connectionSource, Word.class);
             TableUtils.createTableIfNotExists(connectionSource, Word.class);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             throw new RuntimeException("Could not initialize database connection", e);
         }
     }

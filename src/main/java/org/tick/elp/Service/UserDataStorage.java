@@ -11,8 +11,12 @@ import com.j256.ormlite.table.TableUtils;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserDataStorage implements IUserDataStorage {
+
+    private static final Logger logger = Logger.getLogger(UserDataStorage.class.getName());
 
     public final static String USER_DATA_BASE_NAME = "UserDataBase.db";
     public final static String USER_TEST_DATA_TABLE_NAME = "UserTestDataTable";
@@ -40,7 +44,7 @@ public class UserDataStorage implements IUserDataStorage {
             TableUtils.createTableIfNotExists(connectionSource, UserMistake.class);
             TableUtils.createTableIfNotExists(connectionSource, UserCollection.class);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             throw new RuntimeException("Could not initialize user database", e);
         }
     }
@@ -59,7 +63,7 @@ public class UserDataStorage implements IUserDataStorage {
             }
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         }
     }
@@ -75,7 +79,7 @@ public class UserDataStorage implements IUserDataStorage {
             userCollectionDao.create(collection);
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         }
     }
@@ -90,7 +94,7 @@ public class UserDataStorage implements IUserDataStorage {
             }
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         }
     }
@@ -102,7 +106,7 @@ public class UserDataStorage implements IUserDataStorage {
             List<UserCollection> list = userCollectionDao.queryForAll();
             return list.stream().map(UserCollection::getWord).toList();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return List.of();
         }
     }
@@ -114,7 +118,7 @@ public class UserDataStorage implements IUserDataStorage {
             List<UserCollection> list = userCollectionDao.queryForEq("word", word);
             return list != null && !list.isEmpty();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         }
     }
@@ -206,10 +210,10 @@ public class UserDataStorage implements IUserDataStorage {
             }
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return false;
         }
     }

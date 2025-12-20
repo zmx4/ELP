@@ -6,10 +6,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.tick.elp.Helper.PathHelper;
 
 public class FilePreferenceStorage implements IPreferenceStorage{
+
+    private static final Logger logger = Logger.getLogger(FilePreferenceStorage.class.getName());
 
     @Override
     public void set(String key, String value) {
@@ -17,7 +21,7 @@ public class FilePreferenceStorage implements IPreferenceStorage{
         try (FileWriter writer = new FileWriter(filePath)) {
             writer.write(value);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
         }
     }
 
@@ -31,7 +35,7 @@ public class FilePreferenceStorage implements IPreferenceStorage{
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             return reader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return defaultValue;
         }
     }
@@ -58,7 +62,7 @@ public class FilePreferenceStorage implements IPreferenceStorage{
         try {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return defaultValue;
         }
     }
@@ -75,7 +79,7 @@ public class FilePreferenceStorage implements IPreferenceStorage{
             long time = Long.parseLong(value);
             return new Date(time);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return defaultValue;
         }
     }

@@ -3,10 +3,13 @@ package org.tick.elp.Service;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.j256.ormlite.dao.GenericRawResults;
 
 public class SQLWordRandomGet implements IWordRandomGet {
+    private static final Logger logger = Logger.getLogger(SQLWordRandomGet.class.getName());
     private static final DataBaseService dataBaseService = DataBaseService.getInstance();
 
     @Override
@@ -45,7 +48,7 @@ public class SQLWordRandomGet implements IWordRandomGet {
             }
             return resultMap;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, null, e);
             return null;
         }
     }
