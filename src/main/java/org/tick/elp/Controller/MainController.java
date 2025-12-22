@@ -1,9 +1,12 @@
 package org.tick.elp.Controller;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,8 +46,7 @@ public class MainController {
             Parent view = loader.load();
             DetailController controller = loader.getController();
             controller.initData(word, fromView);
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(view);
+            swapContentWithFade(view);
         } catch (IOException e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -54,10 +56,23 @@ public class MainController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(view);
+            swapContentWithFade(view);
         } catch (IOException e) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    private void swapContentWithFade(Node newContent) {
+        if (contentArea == null) {
+            return;
+        }
+
+        contentArea.getChildren().setAll(newContent);
+
+        newContent.setOpacity(0.0);
+        FadeTransition fadeIn = new FadeTransition(Duration.millis(180), newContent);
+        fadeIn.setFromValue(0.0);
+        fadeIn.setToValue(1.0);
+        fadeIn.play();
     }
 }

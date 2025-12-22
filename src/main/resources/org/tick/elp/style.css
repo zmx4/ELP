@@ -1,101 +1,182 @@
 .root {
     -fx-font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: #f4f6f8;
+    /* Looked-up colors (keep within existing palette) */
+    -elp-bg: #f4f6f8;
+    -elp-surface: #ffffff;
+    -elp-border: #bdc3c7;
+    -elp-text: #2c3e50;
+    -elp-muted: #34495e;
+    -elp-primary: #3498db;
+    -elp-primary-hover: #2980b9;
+    -elp-primary-pressed: #2573a7;
+    -elp-accent: #1abc9c;
+    -elp-sidebar: #2c3e50;
+    -elp-sidebar-hover: #34495e;
+    -elp-sidebar-text: #ecf0f1;
+
+    -fx-background-color: -elp-bg;
+    -fx-text-fill: -elp-text;
+    -fx-focus-color: -elp-primary;
+    -fx-faint-focus-color: rgba(52, 152, 219, 0.25);
 }
 
 .sidebar {
-    -fx-background-color: #2c3e50;
-    -fx-padding: 20;
+    -fx-background-color: -elp-sidebar;
+    -fx-padding: 18;
     -fx-spacing: 10;
 }
 
 .sidebar-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #ecf0f1;
+    -fx-text-fill: -elp-sidebar-text;
     -fx-font-size: 16px;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 12 20;
     -fx-cursor: hand;
-    -fx-background-radius: 4;
+    -fx-background-radius: 10;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: #34495e;
+    -fx-background-color: -elp-sidebar-hover;
 }
 
 .sidebar-button:pressed {
-    -fx-background-color: #1abc9c;
+    -fx-background-color: -elp-accent;
 }
 
 .content-area {
-    -fx-padding: 20;
-    -fx-background-color: white;
+    -fx-background-color: -elp-surface;
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(189, 195, 199, 0.70);
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(three-pass-box, rgba(44, 62, 80, 0.12), 16, 0.0, 0, 6);
 }
 
 .button {
-    -fx-background-color: #3498db;
+    -fx-background-color: -elp-primary;
     -fx-text-fill: white;
-    -fx-background-radius: 4;
-    -fx-padding: 8 15;
+    -fx-background-radius: 10;
+    -fx-padding: 9 14;
     -fx-cursor: hand;
+    -fx-font-weight: 600;
 }
 
 .button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: -elp-primary-hover;
 }
 
 .button:pressed {
-    -fx-background-color: #2573a7;
+    -fx-background-color: -elp-primary-pressed;
+}
+
+.button:disabled {
+    -fx-opacity: 0.65;
+    -fx-cursor: default;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -elp-accent;
+    -fx-text-fill: white;
 }
 
 .text-field {
-    -fx-background-color: white;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 4;
-    -fx-background-radius: 4;
-    -fx-padding: 8;
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-border;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10 12;
 }
 
 .text-field:focused {
-    -fx-border-color: #3498db;
+    -fx-border-color: -elp-primary;
+}
+
+.text-field:disabled {
+    -fx-opacity: 0.75;
 }
 
 .list-view {
-    -fx-background-color: white;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 4;
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-border;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.list-view .virtual-flow {
+    -fx-background-color: -elp-surface;
+}
+
+.list-cell {
+    -fx-padding: 10 12;
+    -fx-background-insets: 0;
 }
 
 .list-cell:filled:selected, .list-cell:filled:selected:hover {
-    -fx-background-color: #3498db;
+    -fx-background-color: -elp-primary;
     -fx-text-fill: white;
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: #ecf0f1;
+    -fx-background-color: -elp-sidebar-text;
     -fx-text-fill: black;
 }
 
 .header-label {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: -elp-text;
 }
 
 .word-label {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: -elp-text;
 }
 
 .text-area {
-    -fx-background-color: white;
-    -fx-border-color: #bdc3c7;
-    -fx-border-radius: 4;
-    -fx-background-radius: 4;
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-border;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
 }
 
 .text-area .content {
-    -fx-background-color: white;
+    -fx-background-color: -elp-surface;
+}
+
+.text-area:focused {
+    -fx-border-color: -elp-primary;
+}
+
+/* Charts (Summary view) */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: -elp-surface;
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(189, 195, 199, 0.60);
+    -fx-border-radius: 10;
+}
+
+.axis {
+    -fx-tick-label-fill: -elp-text;
+}
+
+.chart-legend {
+    -fx-background-color: rgba(255, 255, 255, 0.70);
+    -fx-background-radius: 10;
+}
+
+/* Tag chips in detail view */
+.tag {
+    -fx-background-color: -elp-sidebar-text;
+    -fx-text-fill: -elp-text;
+    -fx-padding: 4 10;
+    -fx-background-radius: 999;
+    -fx-border-color: rgba(189, 195, 199, 0.60);
+    -fx-border-radius: 999;
+    -fx-font-size: 12px;
 }

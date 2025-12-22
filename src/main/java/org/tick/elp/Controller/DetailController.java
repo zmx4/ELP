@@ -49,7 +49,7 @@ public class DetailController {
     private void addTagIfPresent(String tagName, int value) {
         if (value > 0) {
             Label tag = new Label(tagName);
-            tag.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 2 5; -fx-background-radius: 3;");
+            tag.getStyleClass().add("tag");
             tagsBox.getChildren().add(tag);
         }
     }

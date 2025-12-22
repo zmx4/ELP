@@ -20,6 +20,10 @@
       </VBox>
    </left>
    <center>
-      <StackPane fx:id="contentArea" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="contentArea" prefHeight="150.0" prefWidth="200.0" styleClass="content-area" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+         </BorderPane.margin>
+      </StackPane>
    </center>
 </BorderPane>
