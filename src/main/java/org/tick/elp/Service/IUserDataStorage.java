@@ -23,6 +23,11 @@ public interface IUserDataStorage {
     // 检查是否已收藏
     boolean isCollected(String word);
 
+    // 获取所有错题单词
+    List<String> getMistakes();
+    // 移除错题
+    boolean removeMistake(String word);
+
     // 删除数据(仅用于测试)
     boolean clearUserTestData();
 }

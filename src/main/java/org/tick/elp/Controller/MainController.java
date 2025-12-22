@@ -40,6 +40,11 @@ public class MainController {
         loadView("/org/tick/elp/test-view.fxml");
     }
 
+    @FXML
+    public void showMistake() {
+        loadView("/org/tick/elp/mistake-view.fxml");
+    }
+
     public void showDetail(String word, String fromView) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/tick/elp/detail-view.fxml"));

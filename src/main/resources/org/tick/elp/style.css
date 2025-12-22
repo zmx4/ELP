@@ -1,30 +1,36 @@
 .root {
-    -fx-font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    -fx-font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
     -fx-font-size: 14px;
-    /* Looked-up colors (keep within existing palette) */
-    -elp-bg: #f4f6f8;
+    
+    /* 现代化配色方案 */
+    -elp-bg: linear-gradient(to bottom right, #f5f7fa, #e8ecf1);
     -elp-surface: #ffffff;
-    -elp-border: #bdc3c7;
-    -elp-text: #2c3e50;
-    -elp-muted: #34495e;
-    -elp-primary: #3498db;
-    -elp-primary-hover: #2980b9;
-    -elp-primary-pressed: #2573a7;
-    -elp-accent: #1abc9c;
-    -elp-sidebar: #2c3e50;
-    -elp-sidebar-hover: #34495e;
+    -elp-border: #d1d8e0;
+    -elp-text: #1e272e;
+    -elp-muted: #576574;
+    -elp-primary: #4a90e2;
+    -elp-primary-hover: #357abd;
+    -elp-primary-pressed: #2863a6;
+    -elp-accent: #26de81;
+    -elp-accent-hover: #20bf6b;
+    -elp-sidebar: linear-gradient(to bottom, #2c3e50, #34495e);
+    -elp-sidebar-hover: #3d566e;
     -elp-sidebar-text: #ecf0f1;
-
-    -fx-background-color: -elp-bg;
+    -elp-success: #26de81;
+    -elp-warning: #fed330;
+    -elp-error: #fc5c65;
+    
+    -fx-background-color: #f5f7fa;
     -fx-text-fill: -elp-text;
     -fx-focus-color: -elp-primary;
-    -fx-faint-focus-color: rgba(52, 152, 219, 0.25);
+    -fx-faint-focus-color: rgba(74, 144, 226, 0.2);
 }
 
 .sidebar {
-    -fx-background-color: -elp-sidebar;
-    -fx-padding: 18;
-    -fx-spacing: 10;
+    -fx-background-color: linear-gradient(to bottom, #2c3e50, #34495e);
+    -fx-padding: 20;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 20, 0.0, 5, 0);
 }
 
 .sidebar-button {
@@ -32,75 +38,101 @@
     -fx-text-fill: -elp-sidebar-text;
     -fx-font-size: 16px;
     -fx-alignment: CENTER_LEFT;
-    -fx-padding: 12 20;
+    -fx-padding: 14 24;
     -fx-cursor: hand;
-    -fx-background-radius: 10;
+    -fx-background-radius: 12;
+    -fx-transition: all 0.3s ease;
+    -fx-border-width: 0 0 0 4;
+    -fx-border-color: transparent;
 }
 
 .sidebar-button:hover {
-    -fx-background-color: -elp-sidebar-hover;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-border-color: -elp-accent;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 
 .sidebar-button:pressed {
-    -fx-background-color: -elp-accent;
+    -fx-background-color: rgba(38, 222, 129, 0.2);
+    -fx-border-color: -elp-accent;
 }
 
 .content-area {
     -fx-background-color: -elp-surface;
-    -fx-background-radius: 14;
-    -fx-border-color: rgba(189, 195, 199, 0.70);
-    -fx-border-radius: 14;
-    -fx-effect: dropshadow(three-pass-box, rgba(44, 62, 80, 0.12), 16, 0.0, 0, 6);
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(209, 216, 224, 0.5);
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 24, 0.0, 0, 8);
+    -fx-padding: 4;
 }
 
 .button {
-    -fx-background-color: -elp-primary;
+    -fx-background-color: linear-gradient(to bottom, #4a90e2, #357abd);
     -fx-text-fill: white;
-    -fx-background-radius: 10;
-    -fx-padding: 9 14;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18;
     -fx-cursor: hand;
     -fx-font-weight: 600;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.4), 10, 0.3, 0, 4);
+    -fx-font-size: 14px;
 }
 
 .button:hover {
-    -fx-background-color: -elp-primary-hover;
+    -fx-background-color: linear-gradient(to bottom, #357abd, #2863a6);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.6), 14, 0.4, 0, 6);
 }
 
 .button:pressed {
-    -fx-background-color: -elp-primary-pressed;
+    -fx-background-color: linear-gradient(to bottom, #2863a6, #1e4d87);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.3), 6, 0.2, 0, 2);
 }
 
 .button:disabled {
-    -fx-opacity: 0.65;
+    -fx-opacity: 0.5;
     -fx-cursor: default;
+    -fx-effect: none;
 }
 
 .toggle-button:selected {
-    -fx-background-color: -elp-accent;
+    -fx-background-color: linear-gradient(to bottom, #26de81, #20bf6b);
     -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(38, 222, 129, 0.4), 8, 0.3, 0, 3);
 }
 
 .text-field {
     -fx-background-color: -elp-surface;
     -fx-border-color: -elp-border;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
-    -fx-padding: 10 12;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12 16;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0.0, 0, 2);
+    -fx-font-size: 14px;
 }
 
 .text-field:focused {
     -fx-border-color: -elp-primary;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.3), 12, 0.3, 0, 3);
 }
 
 .text-field:disabled {
-    -fx-opacity: 0.75;
+    -fx-opacity: 0.6;
+    -fx-background-color: #f5f7fa;
 }
 
 .list-view {
     -fx-background-color: -elp-surface;
     -fx-border-color: -elp-border;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0.0, 0, 4);
 }
 
 .list-view .virtual-flow {
@@ -108,75 +140,334 @@
 }
 
 .list-cell {
-    -fx-padding: 10 12;
+    -fx-padding: 12 16;
     -fx-background-insets: 0;
+    -fx-background-radius: 8;
 }
 
 .list-cell:filled:selected, .list-cell:filled:selected:hover {
-    -fx-background-color: -elp-primary;
+    -fx-background-color: linear-gradient(to right, #4a90e2, #357abd);
     -fx-text-fill: white;
+    -fx-font-weight: 600;
 }
 
 .list-cell:filled:hover {
-    -fx-background-color: -elp-sidebar-text;
-    -fx-text-fill: black;
+    -fx-background-color: rgba(74, 144, 226, 0.1);
+    -fx-text-fill: -elp-text;
 }
 
 .header-label {
-    -fx-font-size: 18px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: -elp-text;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 2, 0.0, 0, 1);
 }
 
 .word-label {
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
     -fx-text-fill: -elp-text;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.2), 4, 0.0, 0, 2);
 }
 
 .text-area {
     -fx-background-color: -elp-surface;
     -fx-border-color: -elp-border;
-    -fx-border-radius: 12;
-    -fx-background-radius: 12;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-width: 2;
+    -fx-padding: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0.0, 0, 2);
 }
 
 .text-area .content {
     -fx-background-color: -elp-surface;
+    -fx-padding: 8;
 }
 
 .text-area:focused {
     -fx-border-color: -elp-primary;
+    -fx-effect: dropshadow(gaussian, rgba(74, 144, 226, 0.3), 12, 0.3, 0, 3);
 }
 
 /* Charts (Summary view) */
 .chart {
     -fx-background-color: transparent;
+    -fx-padding: 10;
 }
 
 .chart-plot-background {
     -fx-background-color: -elp-surface;
-    -fx-background-radius: 10;
-    -fx-border-color: rgba(189, 195, 199, 0.60);
-    -fx-border-radius: 10;
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(209, 216, 224, 0.5);
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 8, 0.0, 0, 2);
 }
 
 .axis {
     -fx-tick-label-fill: -elp-text;
+    -fx-font-size: 12px;
 }
 
 .chart-legend {
-    -fx-background-color: rgba(255, 255, 255, 0.70);
-    -fx-background-radius: 10;
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    -fx-background-radius: 12;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0.0, 0, 2);
 }
 
 /* Tag chips in detail view */
 .tag {
-    -fx-background-color: -elp-sidebar-text;
+    -fx-background-color: linear-gradient(to right, rgba(74, 144, 226, 0.12), rgba(38, 222, 129, 0.12));
     -fx-text-fill: -elp-text;
-    -fx-padding: 4 10;
-    -fx-background-radius: 999;
-    -fx-border-color: rgba(189, 195, 199, 0.60);
-    -fx-border-radius: 999;
-    -fx-font-size: 12px;
+    -fx-padding: 6 14;
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(74, 144, 226, 0.3);
+    -fx-border-radius: 20;
+    -fx-border-width: 1.5;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 4, 0.0, 0, 2);
+}
+
+/* 美化滚动条 */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(74, 144, 226, 0.4);
+    -fx-background-radius: 8;
+    -fx-background-insets: 2;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(74, 144, 226, 0.6);
+}
+
+.scroll-bar .thumb:pressed {
+    -fx-background-color: rgba(74, 144, 226, 0.8);
+}
+
+.scroll-bar .track {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-background-radius: 8;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* 进度条样式 */
+.progress-bar {
+    -fx-background-color: rgba(209, 216, 224, 0.3);
+    -fx-background-radius: 10;
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(to right, #4a90e2, #26de81);
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-padding: 4;
+}
+
+/* 标签页样式 */
+.tab-pane {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 12 20;
+    -fx-border-color: rgba(209, 216, 224, 0.5);
+    -fx-border-width: 1 1 0 1;
+}
+
+.tab:selected {
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-primary;
+    -fx-border-width: 2 2 0 2;
+}
+
+.tab .tab-label {
+    -fx-text-fill: -elp-muted;
+    -fx-font-weight: 500;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: -elp-primary;
+    -fx-font-weight: 600;
+}
+
+/* 工具提示样式 */
+.tooltip {
+    -fx-background-color: rgba(30, 39, 46, 0.95);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.3, 0, 4);
+}
+
+/* 复选框和单选框样式 */
+.check-box .box,
+.radio-button .radio {
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-border;
+    -fx-border-width: 2;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.check-box:selected .box,
+.radio-button:selected .radio {
+    -fx-background-color: linear-gradient(to bottom, #4a90e2, #357abd);
+    -fx-border-color: -elp-primary;
+}
+
+.check-box .mark,
+.radio-button .dot {
+    -fx-background-color: white;
+}
+
+/* 分隔符样式 */
+.separator .line {
+    -fx-border-color: rgba(209, 216, 224, 0.5);
+    -fx-border-width: 1;
+}
+
+/* 菜单样式 */
+.menu-bar {
+    -fx-background-color: -elp-surface;
+    -fx-border-color: rgba(209, 216, 224, 0.5);
+    -fx-border-width: 0 0 1 0;
+}
+
+.menu-item {
+    -fx-background-color: -elp-surface;
+    -fx-padding: 8 12;
+}
+
+.menu-item:hover {
+    -fx-background-color: rgba(74, 144, 226, 0.1);
+}
+
+.menu-item .label {
+    -fx-text-fill: -elp-text;
+}
+
+/* 表格样式 */
+.table-view {
+    -fx-background-color: -elp-surface;
+    -fx-border-color: -elp-border;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0.0, 0, 4);
+}
+
+.table-view .column-header {
+    -fx-background-color: linear-gradient(to bottom, #f5f7fa, #e8ecf1);
+    -fx-text-fill: -elp-text;
+    -fx-font-weight: 600;
+    -fx-padding: 10;
+}
+
+.table-row-cell {
+    -fx-background-color: -elp-surface;
+    -fx-border-color: rgba(209, 216, 224, 0.3);
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(74, 144, 226, 0.08);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(74, 144, 226, 0.15);
+}
+
+/* 加载动画提示 */
+.progress-indicator {
+    -fx-progress-color: -elp-primary;
+}
+
+.progress-indicator .percentage {
+    -fx-fill: -elp-text;
+}
+
+/* 错题本学习模式样式 */
+.word-display {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -elp-primary;
+    -fx-padding: 20;
+}
+
+.hint-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: -elp-muted;
+    -fx-padding: 40;
+}
+
+.progress-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -elp-text;
+}
+
+.success-button {
+    -fx-background-color: linear-gradient(to bottom, #26de81, #20bf6b);
+    -fx-text-fill: white;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18;
+    -fx-cursor: hand;
+    -fx-font-weight: 600;
+    -fx-effect: dropshadow(gaussian, rgba(38, 222, 129, 0.4), 10, 0.3, 0, 4);
+    -fx-font-size: 14px;
+}
+
+.success-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #20bf6b, #1a9e59);
+}
+
+.success-button:pressed {
+    -fx-background-color: #1a9e59;
+}
+
+.success-button:disabled {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #888888;
+    -fx-effect: none;
+}
+
+.warning-button {
+    -fx-background-color: linear-gradient(to bottom, #fed330, #f7b731);
+    -fx-text-fill: #333333;
+    -fx-background-radius: 12;
+    -fx-padding: 10 18;
+    -fx-cursor: hand;
+    -fx-font-weight: 600;
+    -fx-effect: dropshadow(gaussian, rgba(247, 183, 49, 0.4), 10, 0.3, 0, 4);
+    -fx-font-size: 14px;
+}
+
+.warning-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #f7b731, #e5a62c);
+}
+
+.warning-button:pressed {
+    -fx-background-color: #e5a62c;
+}
+
+.warning-button:disabled {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #888888;
+    -fx-effect: none;
 }

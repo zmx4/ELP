@@ -151,6 +151,34 @@ public class UserDataStorage implements IUserDataStorage {
         }
     }
 
+    @Override
+    public List<String> getMistakes() {
+        if (connectionSource == null) initializeUserDataBase();
+        try {
+            List<UserMistake> list = userMistakeDao.queryForAll();
+            // 返回去重后的单词列表
+            return list.stream().map(UserMistake::getWord).distinct().toList();
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, null, e);
+            return List.of();
+        }
+    }
+
+    @Override
+    public boolean removeMistake(String word) {
+        if (connectionSource == null) initializeUserDataBase();
+        try {
+            List<UserMistake> list = userMistakeDao.queryForEq("word", word);
+            if (list != null && !list.isEmpty()) {
+                userMistakeDao.delete(list);
+            }
+            return true;
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, null, e);
+            return false;
+        }
+    }
+
     // @Override
     // public boolean clearUserTestData() {
     //     if (connectionSource == null) initializeUserDataBase();
