@@ -1,14 +1,21 @@
 package org.tick.elp.Controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.tick.elp.Entity.TestRecord;
 import org.tick.elp.Service.IWordRandomGet;
 import org.tick.elp.Service.SQLWordRandomGet;
+import org.tick.elp.Service.UserDataStorage;
+import org.tick.elp.View.MainApplication;
 
+import java.io.IOException;
 import java.util.*;
 
 public class TestController {
@@ -41,6 +48,11 @@ public class TestController {
     private boolean isSelectionMode;
     private boolean isAnswered;
 
+    // New fields for summary
+    private long questionStartTime;
+    private Map<String, Long> reactionTimes = new LinkedHashMap<>();
+    private int correctCount = 0;
+
     @FXML
     public void initialize() {
         tableSelector.getItems().addAll("CET4", "CET6", "HighSchool", "PrimarySchool", "tf", "ys");
@@ -63,6 +75,11 @@ public class TestController {
         }
         wordList = new ArrayList<>(wordMap.keySet());
         currentIndex = 0;
+        
+        // Reset stats
+        reactionTimes.clear();
+        correctCount = 0;
+        
         questionArea.setVisible(true);
         nextButton.setVisible(true);
         nextQuestion();
@@ -70,11 +87,7 @@ public class TestController {
 
     private void nextQuestion() {
         if (currentIndex >= wordList.size()) {
-            questionLabel.setText("测试结束！");
-            optionsBox.setVisible(false);
-            fillBox.setVisible(false);
-            nextButton.setDisable(true);
-            resultLabel.setText("");
+            finishTest();
             return;
         }
 
@@ -92,6 +105,36 @@ public class TestController {
             setupSelectionQuestion();
         } else {
             setupFillQuestion();
+        }
+        
+        questionStartTime = System.currentTimeMillis();
+    }
+
+    private void finishTest() {
+        questionLabel.setText("测试结束！");
+        optionsBox.setVisible(false);
+        fillBox.setVisible(false);
+        nextButton.setDisable(true);
+        resultLabel.setText("");
+
+        // Save record
+        double score = wordList.isEmpty() ? 0 : (double) correctCount / wordList.size();
+        TestRecord record = new TestRecord(score, new Date(), wordList.size(), correctCount);
+        UserDataStorage.getInstance().saveTestRecord(record);
+
+        // Load summary view
+        try {
+            FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("/org/tick/elp/summary-view.fxml"));
+            Scene scene = new Scene(loader.load());
+            
+            SummaryController controller = loader.getController();
+            controller.initData(reactionTimes, UserDataStorage.getInstance().getTestHistory());
+            
+            Stage stage = (Stage) questionLabel.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            resultLabel.setText("无法加载总结页面: " + e.getMessage());
         }
     }
 
@@ -151,12 +194,18 @@ public class TestController {
         if (isAnswered) return;
         isAnswered = true;
         
+        long duration = System.currentTimeMillis() - questionStartTime;
+        reactionTimes.put(currentWord, duration);
+        
         if (selected.equals(currentTranslation)) {
             resultLabel.setText("正确!");
             resultLabel.setStyle("-fx-text-fill: green;");
+            correctCount++;
         } else {
             resultLabel.setText("错误! 正确答案: " + currentTranslation);
             resultLabel.setStyle("-fx-text-fill: red;");
+            // Record mistake
+            UserDataStorage.getInstance().insertUserTestData(Collections.singletonList(currentWord));
         }
         disableOptions();
         nextButton.setDisable(false);
@@ -174,12 +223,19 @@ public class TestController {
         if (input.isEmpty()) return;
 
         isAnswered = true;
+        
+        long duration = System.currentTimeMillis() - questionStartTime;
+        reactionTimes.put(currentWord, duration);
+
         if (input.equalsIgnoreCase(currentWord)) {
             resultLabel.setText("正确!");
             resultLabel.setStyle("-fx-text-fill: green;");
+            correctCount++;
         } else {
             resultLabel.setText("错误! 正确答案: " + currentWord);
             resultLabel.setStyle("-fx-text-fill: red;");
+            // Record mistake
+            UserDataStorage.getInstance().insertUserTestData(Collections.singletonList(currentWord));
         }
         inputField.setDisable(true);
         nextButton.setDisable(false);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tick.elp.Controller.SummaryController">
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="测试总结" />
+    
+    <HBox alignment="CENTER" spacing="20.0">
+        <VBox alignment="CENTER">
+            <Label text="单词反应时间" />
+            <PieChart fx:id="reactionTimeChart" prefHeight="300.0" prefWidth="400.0" />
+        </VBox>
+        
+        <VBox alignment="CENTER">
+            <Label text="历史成绩趋势" />
+            <LineChart fx:id="historyChart" prefHeight="300.0" prefWidth="400.0">
+                <xAxis>
+                    <CategoryAxis label="测试时间" side="BOTTOM" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="正确率" side="LEFT" upperBound="1.0" />
+                </yAxis>
+            </LineChart>
+        </VBox>
+    </HBox>
+    
+    <Button fx:id="backButton" onAction="#onBackButtonClick" text="返回主菜单" />
+</VBox>

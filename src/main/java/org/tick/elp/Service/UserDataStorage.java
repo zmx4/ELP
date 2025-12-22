@@ -8,6 +8,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTable;
 import com.j256.ormlite.table.TableUtils;
 
+import org.tick.elp.Entity.TestRecord;
+
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +28,7 @@ public class UserDataStorage implements IUserDataStorage {
     private ConnectionSource connectionSource;
     private Dao<UserMistake, Integer> userMistakeDao;
     private Dao<UserCollection, Integer> userCollectionDao;
+    private Dao<TestRecord, Integer> testRecordDao;
 
     public static UserDataStorage getInstance() {
         if (instance == null) {
@@ -41,11 +44,36 @@ public class UserDataStorage implements IUserDataStorage {
             connectionSource = new JdbcConnectionSource(databaseUrl);
             userMistakeDao = DaoManager.createDao(connectionSource, UserMistake.class);
             userCollectionDao = DaoManager.createDao(connectionSource, UserCollection.class);
+            testRecordDao = DaoManager.createDao(connectionSource, TestRecord.class);
             TableUtils.createTableIfNotExists(connectionSource, UserMistake.class);
             TableUtils.createTableIfNotExists(connectionSource, UserCollection.class);
+            TableUtils.createTableIfNotExists(connectionSource, TestRecord.class);
         } catch (SQLException e) {
             logger.log(Level.SEVERE, null, e);
             throw new RuntimeException("Could not initialize user database", e);
+        }
+    }
+
+    @Override
+    public boolean saveTestRecord(TestRecord record) {
+        if (connectionSource == null) initializeUserDataBase();
+        try {
+            testRecordDao.create(record);
+            return true;
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, null, e);
+            return false;
+        }
+    }
+
+    @Override
+    public List<TestRecord> getTestHistory() {
+        if (connectionSource == null) initializeUserDataBase();
+        try {
+            return testRecordDao.queryForAll();
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, null, e);
+            return List.of();
         }
     }
 

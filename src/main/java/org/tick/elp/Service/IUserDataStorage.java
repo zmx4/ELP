@@ -1,5 +1,6 @@
 package org.tick.elp.Service;
 
+import org.tick.elp.Entity.TestRecord;
 import java.util.List;
 
 public interface IUserDataStorage {
@@ -8,6 +9,11 @@ public interface IUserDataStorage {
     // 插入用户错误答案数据
     boolean insertUserTestData(List<String> falseAnswers);
     
+    // 保存测试记录
+    boolean saveTestRecord(TestRecord record);
+    // 获取测试历史
+    List<TestRecord> getTestHistory();
+
     // 添加收藏
     boolean addCollection(String word);
     // 移除收藏
