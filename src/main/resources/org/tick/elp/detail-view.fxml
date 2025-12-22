@@ -14,13 +14,9 @@
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
     </padding>
 
-    <Button text="返回" onAction="#onBackButtonClick" />
+    <Button text="返回" onAction="#onBackButtonClick" styleClass="button" />
 
-    <Label fx:id="wordLabel" text="Word">
-        <font>
-            <Font name="System Bold" size="24.0" />
-        </font>
-    </Label>
+    <Label fx:id="wordLabel" text="Word" styleClass="word-label" />
 
     <Label text="考点归属：" />
     <HBox spacing="10.0" fx:id="tagsBox">
@@ -28,6 +24,6 @@
     </HBox>
 
     <Label text="翻译：" />
-    <TextArea fx:id="translationArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS" />
+    <TextArea fx:id="translationArea" editable="false" wrapText="true" VBox.vgrow="ALWAYS" styleClass="text-area" />
 
 </VBox>

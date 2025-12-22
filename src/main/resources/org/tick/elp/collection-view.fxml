@@ -13,11 +13,11 @@
         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
     </padding>
 
-    <Label text="我的收藏" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label text="我的收藏" styleClass="header-label" />
 
     <HBox spacing="8.0">
-        <Button text="刷新" onAction="#onRefreshButtonClick" />
-        <Button text="删除选中" onAction="#onDeleteButtonClick" />
+        <Button text="刷新" onAction="#onRefreshButtonClick" styleClass="button" />
+        <Button text="删除选中" onAction="#onDeleteButtonClick" styleClass="button" />
     </HBox>
 
     <ListView fx:id="collectionListView" VBox.vgrow="ALWAYS" />

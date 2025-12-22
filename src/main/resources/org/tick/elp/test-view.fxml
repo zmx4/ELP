@@ -16,26 +16,26 @@
     <HBox spacing="10.0" alignment="CENTER_LEFT">
         <Label text="选择词库:" />
         <ComboBox fx:id="tableSelector" prefWidth="150.0" />
-        <Button text="开始测试" onAction="#startTest" />
+        <Button text="开始测试" onAction="#startTest" styleClass="button" />
     </HBox>
     
     <VBox fx:id="questionArea" spacing="15.0" visible="false">
-        <Label fx:id="questionLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" wrapText="true"/>
+        <Label fx:id="questionLabel" styleClass="header-label" wrapText="true"/>
         
         <VBox fx:id="optionsBox" spacing="10.0" visible="false" />
         
         <VBox fx:id="fillBox" spacing="10.0" visible="false">
             <Label fx:id="hintLabel" style="-fx-font-size: 14px;" wrapText="true"/>
             <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <TextField fx:id="inputField" promptText="输入完整单词" HBox.hgrow="ALWAYS"/>
-                <Button text="提交" onAction="#checkFillAnswer" />
+                <TextField fx:id="inputField" promptText="输入完整单词" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <Button text="提交" onAction="#checkFillAnswer" styleClass="button" />
             </HBox>
         </VBox>
         
         <Label fx:id="resultLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
         
         <HBox alignment="CENTER_RIGHT">
-            <Button fx:id="nextButton" text="下一题" onAction="#onNext" disable="true"/>
+            <Button fx:id="nextButton" text="下一题" onAction="#onNext" disable="true" styleClass="button"/>
         </HBox>
     </VBox>
 </VBox>
